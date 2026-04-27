@@ -131,7 +131,7 @@ def predict():
         xgb_prob = rf_prob
         xgb_pred = int(rf_prob >= rf_threshold)
         warnings_out.append(
-            'XGBoost prediction unavailable. Install libomp and a compatible xgboost build to enable it.'
+            'XGBoost prediction unavailable. The app is running with Random Forest only.'
         )
 
     rf_pred  = int(rf_prob  >= rf_threshold)
