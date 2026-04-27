@@ -7,7 +7,33 @@
     "api/index.py": {
       "memory": 2048,
       "maxDuration": 60,
-      "excludeFiles": "{node_modules/**,dist/**,src/web/**,vite/**,.git/**,.insforge/**,skills/**,__pycache__/**}"
+      "includeFiles": [
+        "model_api.py",
+        "saved_models/features.pkl",
+        "saved_models/rf_model.pkl",
+        "saved_models/rf_threshold.pkl",
+        "saved_models/sample_input.pkl",
+        "saved_models/scaler.pkl",
+        "saved_models/xgb_threshold.pkl"
+      ],
+      "excludeFiles": [
+        "node_modules/**",
+        "dist/**",
+        "src/**",
+        "vite/**",
+        "public/**",
+        ".git/**",
+        ".insforge/**",
+        "skills/**",
+        "__pycache__/**",
+        ".wrangler/**",
+        "*.md",
+        "*.lock",
+        "worker-configuration.d.ts",
+        "wrangler.json",
+        "drizzle.config.ts",
+        "tsconfig*.json"
+      ]
     }
   },
   "rewrites": [
