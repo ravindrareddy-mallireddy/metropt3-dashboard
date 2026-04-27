@@ -1,0 +1,19 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "functions": {
+    "api/index.py": {
+      "memory": 2048,
+      "maxDuration": 60,
+      "excludeFiles": "{node_modules/**,dist/**,src/web/**,vite/**,.git/**,.insforge/**,skills/**,__pycache__/**}"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/:path((?!api/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

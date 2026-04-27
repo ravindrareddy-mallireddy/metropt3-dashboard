@@ -199,3 +199,18 @@ dist
 .dev.vars*
 !.dev.vars.example
 saved_models/rul_model.pkl
+
+# InsForge & AI agent skills
+.insforge
+.agent
+.agents
+.augment
+.claude
+.cline
+.github/copilot*
+.kilocode
+.qoder
+.qwen
+.roo
+.trae
+.windsurf

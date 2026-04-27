@@ -94,7 +94,7 @@ def make_input(data: dict) -> pd.DataFrame:
     row = {f: data.get(f, SENSOR_DEFAULTS.get(f, 0.0)) for f in features}
     return pd.DataFrame([row])
 
-@app.get('/api/health')
+@app.get('/health')
 def health():
     return jsonify({
         'status': 'ok',
@@ -106,7 +106,7 @@ def health():
         'warnings': startup_warnings,
     })
 
-@app.get('/api/sample')
+@app.get('/sample')
 def get_sample():
     """Return the sample input so frontend can pre-populate fields."""
     return jsonify({
@@ -114,7 +114,7 @@ def get_sample():
         'features': features
     })
 
-@app.post('/api/predict')
+@app.post('/predict')
 def predict():
     data = request.json or {}
     X = make_input(data)
@@ -164,7 +164,7 @@ def predict():
         'warnings': warnings_out,
     })
 
-@app.get('/api/feature-importance')
+@app.get('/feature-importance')
 def feature_importance():
     # Top 10 for RF and XGB
     rf_top  = sorted(rf_importances.items(),  key=lambda x: x[1], reverse=True)[:10]
@@ -175,7 +175,7 @@ def feature_importance():
         'warnings': startup_warnings,
     })
 
-@app.get('/api/model-metrics')
+@app.get('/model-metrics')
 def model_metrics():
     return jsonify({
         'models': [
@@ -188,6 +188,7 @@ def model_metrics():
     })
 
 if __name__ == '__main__':
+    port = int(os.environ.get('PORT', '5050'))
     print(f"✓ Loaded {len(features)} features")
     print(f"✓ RF threshold: {rf_threshold:.4f}")
     if xgb_model is not None:
@@ -196,4 +197,4 @@ if __name__ == '__main__':
         print('! XGBoost unavailable; API will run with Random Forest only')
         for warning in startup_warnings:
             print(f'! {warning}')
-    app.run(port=5050, debug=False)
+    app.run(host='0.0.0.0', port=port, debug=False)
