@@ -9,12 +9,11 @@
       "maxDuration": 60,
       "includeFiles": [
         "model_api.py",
-        "saved_models/features.pkl",
-        "saved_models/rf_model.pkl",
-        "saved_models/rf_threshold.pkl",
-        "saved_models/sample_input.pkl",
-        "saved_models/scaler.pkl",
-        "saved_models/xgb_threshold.pkl"
+        "vercel_artifacts/features.json.gz",
+        "vercel_artifacts/rf_forest.json.gz",
+        "vercel_artifacts/rf_importances.json.gz",
+        "vercel_artifacts/rf_threshold.json.gz",
+        "vercel_artifacts/sample_input.json.gz"
       ],
       "excludeFiles": [
         "node_modules/**",
@@ -27,6 +26,8 @@
         "skills/**",
         "__pycache__/**",
         ".wrangler/**",
+        "saved_models/**",
+        "vercel_artifacts/**",
         "*.md",
         "*.lock",
         "worker-configuration.d.ts",
